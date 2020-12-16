@@ -11,11 +11,11 @@
         android:layout_width="96dp"
         android:layout_height="74dp"
         android:text="Cavan City"
-        app:layout_constraintBottom_toTopOf="@+id/UI_a2_Center"
+        app:layout_constraintBottom_toTopOf="@+id/UI_a2_PlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.85" />
 
     <Button
         android:id="@+id/UI_a2_DublinCity"
@@ -24,8 +24,8 @@
         android:text="Dublin City"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toEndOf="@+id/UI_a2_Center"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toEndOf="@+id/UI_a2_PlayBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -36,16 +36,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/UI_a2_Center"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/UI_a2_PlayBtn"
+        app:layout_constraintVertical_bias="0.15" />
 
     <Button
-        android:id="@+id/UI_a2_Center"
+        android:id="@+id/UI_a2_PlayBtn"
         android:layout_width="96dp"
-        android:layout_height="74dp"
-        android:text="Center"
-        tools:layout_editor_absoluteX="317dp"
-        tools:layout_editor_absoluteY="168dp" />
+        android:layout_height="37dp"
+        android:onClick="PlayButton"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/UI_a2_SligoCity"
@@ -53,8 +56,20 @@
         android:layout_height="74dp"
         android:text="Sligo City"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/UI_a2_Center"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintEnd_toStartOf="@+id/UI_a2_PlayBtn"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/UI_a2_ReadyTimeDisp"
+        android:layout_width="84dp"
+        android:layout_height="23dp"
+        android:text="Get Ready"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
