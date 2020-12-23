@@ -2,6 +2,7 @@ package edu.mbowen.example.mad_game_s00189001;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -9,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Timer;
+import java.util.Random;
 
 public class A2_Sequence extends AppCompatActivity {
 
@@ -23,14 +24,21 @@ public class A2_Sequence extends AppCompatActivity {
     }
 
     // States
-    GameState currenState, afterWaitState;
+    GameState currentState = GameState.First, afterWaitState;
 
-    Button PlayBtn;
+    Button PlayBtn, LeftBtnImage, TopBtnImage, RightBtnImage, BottomBtnImage;
     TextView ReadyTimerDisp;
     CountDownTimer Timer;
 
-    int ReadyTimerWait, SecondCounter, WaitCounter, WaitTime;
+    public int ReadyTimerWait, SecondCounter, WaitCounter, WaitTime, CurrentIndex;
+    public int SequenceDiff = 4;
 
+    public boolean isHighlighted = false;
+
+    public Button[] AllBtns;
+    public int[] Sequence;
+
+    Random random = new Random();
 
 
     @Override
@@ -44,23 +52,32 @@ public class A2_Sequence extends AppCompatActivity {
         WaitTime = 4;
 
         // References
-        ReadyTimerDisp = (TextView) findViewById(R.id.UI_a2_ReadyTimeDisp);
+        ReadyTimerDisp = findViewById(R.id.UI_a2_ReadyTimeDisp);
         PlayBtn = findViewById(R.id.UI_a2_PlayBtn);
+        LeftBtnImage = findViewById(R.id.UI_a2_LeftBtn);
+        RightBtnImage = findViewById(R.id.UI_a2_RightBtn);
+        TopBtnImage = findViewById(R.id.UI_a2_TopBtn);
+        BottomBtnImage = findViewById(R.id.UI_a2_BottomBtn);
+
+        // Filling the Array for Buttons
+        AllBtns = new Button[] {LeftBtnImage, TopBtnImage, RightBtnImage, BottomBtnImage };
 
         // Set up Timer
         Timer = new CountDownTimer(30000000, 1000) {
             @Override
             public void onTick(long millisUntilFinished)
             {
-                switch (currenState)
+                switch (currentState)
                 {
                     case First:
+                        CreateSequence();
+                        GoToWait(GameState.CountDown, Integer.MAX_VALUE);
                         break;
                     case Wait:
                         WaitCounter++;
 
                         if (WaitCounter >= WaitTime)
-                            currenState = afterWaitState;
+                            currentState = afterWaitState;
                         break;
                     case CountDown:
 
@@ -70,20 +87,19 @@ public class A2_Sequence extends AppCompatActivity {
                         if (SecondCounter <= -1)
                         {
                             ReadyTimerDisp.setText("Memorize");
-                            currenState = GameState.Sequence;
+                            currentState = GameState.Sequence;
                         }
                         break;
                     case Sequence:
 
-                        //
-
+                        PlaySequence();
                         break;
                     case End:
+
+                        SequenceDiff += 2;
+                        PassToPlayIntent();
                         break;
                 }
-
-
-
             }
 
             @Override
@@ -95,22 +111,72 @@ public class A2_Sequence extends AppCompatActivity {
 
         // Initialise
         ReadyTimerDisp.setEnabled(false);
+        // Start Game Loop
+        Timer.start();
 
     }
 
+    public void CreateSequence()
+    {
+            Sequence = new int[SequenceDiff];
+
+            for (int i = 0; i < Sequence.length; i++)
+            {
+                Sequence[i] = random.nextInt(4);
+            }
+        //currenState = GameState.Wait;
+    }
+
+    public void PlaySequence()
+    {
+        if (CurrentIndex >= Sequence.length)
+        {
+            //Toast.makeText(this, "In Play Sequence", Toast.LENGTH_SHORT).show();
+            currentState = GameState.End;
+            return;
+        }
+
+        // Check if highlighted or not
+        if (isHighlighted)
+        {
+            AllBtns[Sequence[CurrentIndex]].setEnabled(false);
+            isHighlighted = false;
+            CurrentIndex++;
+        }
+        else
+        {
+            AllBtns[Sequence[CurrentIndex]].setEnabled(true);
+            GoToWait(GameState.Sequence, 1);
+            isHighlighted = true;
+        }
+
+
+
+    }
 
     public void PlayButton(View _view)
     {
         PlayBtn.setEnabled(false);
         PlayBtn.setVisibility(View.INVISIBLE);
         ReadyTimerDisp.setEnabled(true);
-        // Start Game Loop
-        Timer.start();
-        afterWaitState = GameState.CountDown;
-        WaitTime = 2;
-        WaitCounter = 0;
-        currenState = GameState.Wait;
+        GoToWait(GameState.CountDown, 2);
     }
 
+    private void GoToWait(GameState _gameState, int _waitTime)
+    {
+        afterWaitState = _gameState;
+        WaitTime = _waitTime;
+        WaitCounter = 0;
+        currentState = GameState.Wait;
+    }
+
+
+    private void PassToPlayIntent()
+    {
+        Intent GamePlay = new Intent(this, Activity_a3_GamePlay.class);
+        GamePlay.putExtra("SEQUENCE_ARRAY", Sequence);
+        currentState = GameState.First;
+        startActivity(GamePlay);
+    }
 
 }

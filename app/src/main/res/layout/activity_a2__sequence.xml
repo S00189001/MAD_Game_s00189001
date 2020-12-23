@@ -7,10 +7,11 @@
     tools:context=".A2_Sequence">
 
     <Button
-        android:id="@+id/UI_a2_CavanCity"
+        android:id="@+id/UI_a2_TopBtn"
         android:layout_width="96dp"
         android:layout_height="74dp"
-        android:text="Cavan City"
+        android:enabled="false"
+        android:text="Top Image"
         app:layout_constraintBottom_toTopOf="@+id/UI_a2_PlayBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,10 +19,11 @@
         app:layout_constraintVertical_bias="0.85" />
 
     <Button
-        android:id="@+id/UI_a2_DublinCity"
+        android:id="@+id/UI_a2_RightBtn"
         android:layout_width="96dp"
         android:layout_height="74dp"
-        android:text="Dublin City"
+        android:enabled="false"
+        android:text="Right Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.15"
@@ -29,10 +31,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/UI_a2_MayoCity"
+        android:id="@+id/UI_a2_BottomBtn"
         android:layout_width="96dp"
         android:layout_height="74dp"
-        android:text="Mayo City"
+        android:enabled="false"
+        android:text="Bottom Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +54,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/UI_a2_SligoCity"
+        android:id="@+id/UI_a2_LeftBtn"
         android:layout_width="96dp"
         android:layout_height="74dp"
-        android:text="Sligo City"
+        android:enabled="false"
+        android:text="Left Image"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/UI_a2_PlayBtn"
         app:layout_constraintHorizontal_bias="0.85"
