@@ -23,9 +23,14 @@ public class A2_Sequence extends AppCompatActivity {
         End
     }
 
+    // Static Vars
+    public static int GLOBAL_CurrentHighScore = 0;
+
     // States
     GameState currentState = GameState.First, afterWaitState;
 
+
+    TextView cScore;
     Button PlayBtn, LeftBtnImage, TopBtnImage, RightBtnImage, BottomBtnImage;
     TextView ReadyTimerDisp;
     CountDownTimer Timer;
@@ -58,6 +63,7 @@ public class A2_Sequence extends AppCompatActivity {
         RightBtnImage = findViewById(R.id.UI_a2_RightBtn);
         TopBtnImage = findViewById(R.id.UI_a2_TopBtn);
         BottomBtnImage = findViewById(R.id.UI_a2_BottomBtn);
+        cScore = findViewById(R.id.UI_a2_HighScoreValue);
 
         // Filling the Array for Buttons
         AllBtns = new Button[] {LeftBtnImage, TopBtnImage, RightBtnImage, BottomBtnImage };
@@ -67,6 +73,8 @@ public class A2_Sequence extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished)
             {
+                cScore.setText(String.valueOf(GLOBAL_CurrentHighScore));
+
                 switch (currentState)
                 {
                     // Setup
@@ -97,7 +105,6 @@ public class A2_Sequence extends AppCompatActivity {
                         }
                         break;
                     case Sequence:
-
                         PlaySequence();
                         break;
                     case End:

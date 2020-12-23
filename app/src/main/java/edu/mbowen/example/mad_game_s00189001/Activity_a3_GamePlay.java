@@ -2,6 +2,7 @@ package edu.mbowen.example.mad_game_s00189001;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -126,6 +127,7 @@ public class Activity_a3_GamePlay extends AppCompatActivity implements SensorEve
                 {
                     Log.i("WIN", "You .. Lose");
                     mSensorManager.unregisterListener(this, mSensor);
+                    GameOver();
                     finish();
                 }
             }
@@ -135,6 +137,7 @@ public class Activity_a3_GamePlay extends AppCompatActivity implements SensorEve
         if (currentIndex >= Sequence.length)
         {
             // win
+            A2_Sequence.GLOBAL_CurrentHighScore += 4;
             Log.i("WIN", "You Win");
             mSensorManager.unregisterListener(this, mSensor);
             finish();
@@ -153,4 +156,11 @@ public class Activity_a3_GamePlay extends AppCompatActivity implements SensorEve
     {
 
     }
+
+    public void GameOver()
+    {
+        Intent GameOver = new Intent(this, Activity_a4_GameOver.class);
+        startActivity(GameOver);
+    }
+
 }
