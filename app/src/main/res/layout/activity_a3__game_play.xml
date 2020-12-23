@@ -6,4 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".Activity_a3_GamePlay">
 
+    <Button
+        android:id="@+id/UI_a3_TopBtn"
+        android:layout_width="96dp"
+        android:layout_height="74dp"
+        android:enabled="false"
+        android:text="Top Image"
+        app:layout_constraintBottom_toTopOf="@+id/UI_a2_ReadyTimeDisp2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/UI_a3_BottomBtn"
+        android:layout_width="96dp"
+        android:layout_height="74dp"
+        android:enabled="false"
+        android:text="Bottom Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/UI_a2_ReadyTimeDisp2" />
+
+    <Button
+        android:id="@+id/UI_a3_RightBtn"
+        android:layout_width="96dp"
+        android:layout_height="74dp"
+        android:enabled="false"
+        android:text="Right Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/UI_a2_ReadyTimeDisp2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/UI_a3_LeftBtn"
+        android:layout_width="96dp"
+        android:layout_height="74dp"
+        android:enabled="false"
+        android:text="Left Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/UI_a2_ReadyTimeDisp2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/UI_a2_ReadyTimeDisp2"
+        android:layout_width="84dp"
+        android:layout_height="23dp"
+        android:text="GO!"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

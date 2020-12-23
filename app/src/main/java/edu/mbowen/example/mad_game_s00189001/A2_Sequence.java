@@ -31,7 +31,7 @@ public class A2_Sequence extends AppCompatActivity {
     CountDownTimer Timer;
 
     public int ReadyTimerWait, SecondCounter, WaitCounter, WaitTime, CurrentIndex;
-    public int SequenceDiff = 4;
+    public int SequenceDiff = 3;
 
     public boolean isHighlighted = false;
 
@@ -47,7 +47,7 @@ public class A2_Sequence extends AppCompatActivity {
         setContentView(R.layout.activity_a2__sequence);
 
         ReadyTimerWait = 4;
-        SecondCounter = 3;
+        SecondCounter = 1;
         WaitCounter = 0;
         WaitTime = 4;
 
@@ -69,7 +69,13 @@ public class A2_Sequence extends AppCompatActivity {
             {
                 switch (currentState)
                 {
+                    // Setup
                     case First:
+                        CurrentIndex = 0;
+                        PlayBtn.setEnabled(true);
+                        PlayBtn.setVisibility(View.VISIBLE);
+                        ReadyTimerDisp.setText("Get Ready");
+                        isHighlighted =  false;
                         CreateSequence();
                         GoToWait(GameState.CountDown, Integer.MAX_VALUE);
                         break;
@@ -159,7 +165,7 @@ public class A2_Sequence extends AppCompatActivity {
         PlayBtn.setEnabled(false);
         PlayBtn.setVisibility(View.INVISIBLE);
         ReadyTimerDisp.setEnabled(true);
-        GoToWait(GameState.CountDown, 2);
+        GoToWait(GameState.CountDown, 1);
     }
 
     private void GoToWait(GameState _gameState, int _waitTime)
